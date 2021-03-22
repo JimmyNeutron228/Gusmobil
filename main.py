@@ -19,9 +19,22 @@ def main():
     app.run()
 
 
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect("/")
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    db_sess = db_session.create_session()
+    return db_sess.query(Users).get(user_id)
+
+
 @app.route('/')
 def index():
-    return ''
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
