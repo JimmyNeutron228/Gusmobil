@@ -3,6 +3,7 @@
 
 body {
   margin: 0;
+  background-color: #4d648d;
 }
 
 * {
@@ -22,7 +23,7 @@ ul {
   margin: 0;
 }
 .navbar {
-  background: #080808;
+  background: #1e1f26;
   color: #fff;
   padding: 15px;
   width: 100%;
@@ -57,11 +58,11 @@ ul {
   color: #fff;
 }
 .navbar ul.links li:hover {
-  background: #ffc600;
+  background: #283655;
   cursor: pointer;
 }
 .navbar ul.links li:hover a {
-  color: #080808;
+  color: #fff;
 }
 button {
   background: #ffc600;
@@ -170,7 +171,7 @@ section {
     width: 100%;
   }
   .navbar.collapsed .links li:hover a {
-    color: #080808;
+    color: #283655;
   }
   .navbar.collapsed .right {
     position: fixed;
@@ -196,4 +197,14 @@ section {
   max-width: 1170px;
   margin: auto;
   height: 1000px;
+}
+.card {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    max-width: 80%;
+    padding: 0;
+    border: 2px solid black;
+    border-radius: 15px;
+    background-color: #d0e1f9;
 }
