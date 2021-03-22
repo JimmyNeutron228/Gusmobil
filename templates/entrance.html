@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="card mt-4">
-        <h1 style="text-align: center;">Login</h1>
+        <h1 style="text-align: center;">Вход</h1>
         <form method="post">
             {{ form.hidden_tag() }}
             <p>
@@ -24,8 +24,14 @@
                 {% endfor %}
             </p>
             <p style="margin-left: 2%;">{{ form.is_remember_me() }} {{ form.is_remember_me.label }}</p>
-            <p style="margin-left: 2%;">{{ form.submit(type="submit", class="btn btn-primary") }}</p>
-            <div>{{ message }}</div>
+            <p style="margin-left: 2%;">{{ form.submit(type="submit", class="blubtn") }}</p>
+            <div style="display: flex">
+                <div style="margin-left: 2%; margin-bottom: 2%; float: left">{{ message }}</div>
+                <div style="margin: auto"></div>
+                <div style="margin-right: 2%; text-align:right; float: right; margin-bottom: 2%">
+                    Нет учётной записи? <a style="text-decoration: None" href="/register">Создайте</a>!
+                </div>
+            </div>
         </form>
     </div>
 {% endblock %}

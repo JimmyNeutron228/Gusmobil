@@ -208,3 +208,39 @@ section {
     border-radius: 15px;
     background-color: #d0e1f9;
 }
+.blubtn {
+  width:100px;
+  height:35px;
+  text-align:center;
+  display:block;
+  font-family: arial;
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 18px;
+  border: #283655 1px solid;
+  color: #283655;
+  padding: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 20px auto;
+  transition: .5s;
+  border-radius: 10px;
+}
+.blubtn:hover {
+  top: 5px;
+  transition: .5s;
+  color: #FFF;
+  background-color: #4d648d;
+  border: #000 1px solid;
+  border-radius: 10px;
+}
+.blubtn:active {
+  color: #000;
+  border: #1A1A1A 1px solid;
+  transition: .07s;
+  background-color: #FFF;
+}
+.title_logo{
+    text-decoration: None;
+    color: #FFF;
+}

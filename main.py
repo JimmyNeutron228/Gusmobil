@@ -3,6 +3,7 @@ from data.users import Users
 from data.ads import Ads
 from data.favorites import Favorites
 from forms.login import LoginForm
+from forms.register import RegisterForm
 from flask import Flask, request, abort
 from flask import render_template, redirect
 from flask_login import LoginManager, login_user
@@ -48,9 +49,31 @@ def entrance():
             login_user(user, remember=form.is_remember_me.data)
             return redirect("/")
         return render_template('entrance.html',
-                               message='Wrong login or password',
+                               message='Неверный логин или пароль!',
                                form=form)
-    return render_template('entrance.html', title='Login', form=form)
+    return render_template('entrance.html', title='Вход', form=form)
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        if form.password.data != form.password_again.data:
+            return render_template("register.html", form=form,
+                                   message="Пароли не совпадают")
+        session = db_session.create_session()
+        if session.query(Users).filter(Users.email == form.email.data).first():
+            return render_template("register.html", title="Регистрация", form=form,
+                                   message="Такой пользователь уже есть")
+        user = Users(
+            surname=form.surname.data,
+            name=form.name.data,
+            email=form.email.data)
+        user.set_password(form.password.data)
+        session.add(user)
+        session.commit()
+        return redirect('/')
+    return render_template('register.html', title='Регистрация', form=form)
 
 
 if __name__ == '__main__':
