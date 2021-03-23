@@ -3,6 +3,7 @@ from data.users import Users
 from data.ads import Ads
 from data.favorites import Favorites
 from forms.login import LoginForm
+from forms.ads import Adds
 from forms.register import RegisterForm
 from flask import Flask, request, abort
 from flask import render_template, redirect
@@ -37,6 +38,30 @@ def load_user(user_id):
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/add_ad', methods=['GET', 'POST'])
+def add_ads():
+    form = Adds()
+    if form.validate_on_submit():
+        session = db_session.create_session()
+        add = Adds(
+            brand=form.brand.data,
+            model=form.model.data,
+            price=form.price.data,
+            transmission=form.transmission.data,
+            engine=form.engine.data,
+            steering_wheel=form.steering_wheel.data,
+            power=form.power.data,
+            drive_unit=form.drive_unit.data,
+            mileage=form.mileage.data,
+            year=form.year.data,
+            about=form.about.data
+            )
+        session.add(add)
+        session.commit()
+        return redirect('/')
+    return render_template('add_ad.html', form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])

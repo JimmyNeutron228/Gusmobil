@@ -244,3 +244,19 @@ section {
     text-decoration: None;
     color: #FFF;
 }
+.add_ad{
+  width:100px;
+  height:35px;
+  font-family: arial;
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 18px;
+  border: #000 2px solid;
+  color: #000;
+  background-color: #FFF;
+  padding: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 20px auto;
+  border-radius: 10px;
+}

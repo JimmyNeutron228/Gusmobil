@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-    писюн
+    {% if current_user.is_authenticated %}
+        <a class="add_ad btn" href="/add_ad">Добавить объявление</a>
+    {% else %}
+        <a class="add_ad btn" href="/login">Добавить объявление</a>
+    {% endif %}
 {% endblock %}
