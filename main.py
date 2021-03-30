@@ -166,6 +166,5 @@ def edit_profile():
     return render_template('edit_profile.html', form=form, title='Редактирование профиля')
 
 
-
 if __name__ == '__main__':
     main()

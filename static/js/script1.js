@@ -6,7 +6,7 @@ function showFile(e) {
         fr.onload = (function (theFile) {
             return function (e) {
                 var div = document.createElement("div");
-                div.innerHTML = "<div><img class='loaded_images' src='" + e.target.result + "' /></div>";
+                div.innerHTML = "<img src='" + e.target.result + "' />";
                 document.getElementById("list").insertBefore(div, null);
             };
         })(f);
