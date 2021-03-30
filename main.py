@@ -73,11 +73,13 @@ def add_ads():
         os.chdir(f'ad_{dir_kol + 1}')
         for i in range(len(requested_files)):
             requested_files[i].save(f'image_{i + 1}.jpg')
-        db_images_list = os.listdir()
-        add.images = ', '.join(db_images_list)
+        db_images_dir = os.getcwd()
+        db_images_dir = db_images_dir[db_images_dir.index('Gusmobil') + 9:]
+        add.images = db_images_dir
         add.user_id = id
         session.add(add)
         session.commit()
+        os.chdir('../../..')
         return redirect('/')
     return render_template('add_ad.html', form=form)
 
@@ -123,6 +125,7 @@ def register():
         new_dir_name = 'profile_' + str(id)
         if not os.path.isdir(new_dir_name):
             os.mkdir(new_dir_name)
+        os.chdir('..')
         return redirect('/')
     return render_template('register.html', title='Регистрация', form=form)
 
