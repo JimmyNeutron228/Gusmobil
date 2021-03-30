@@ -74,7 +74,7 @@ def add_ads():
         for i in range(len(requested_files)):
             requested_files[i].save(f'image_{i + 1}.jpg')
         db_images_dir = os.getcwd()
-        db_images_dir = db_images_dir[db_images_dir.index('Gusmobil') + 9:]
+        db_images_dir = db_images_dir[db_images_dir.index('users_data'):]
         add.images = db_images_dir
         add.user_id = id
         session.add(add)
