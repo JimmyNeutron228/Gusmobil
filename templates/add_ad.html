@@ -3,7 +3,7 @@
 {% block content %}
     <div class="card mt-4">
         <h1 style="text-align: center;">Добавить объявление</h1>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             <p>
                 <h2 style="padding: 7px; margin: 20px;">{{ form.brand.label }}</h2>
@@ -104,7 +104,12 @@
                     </div>
                 {% endfor %}
             </p>
-            <p style="margin-left: 2%;"><button>Добавить</button></p>
+            <input type="file" class="form-control-file" id="files" name="file" accept="image/*" multiple />
+            <div class="container">
+                <div class="row" id="list"></div>
+            </div>
+            <p style="margin-left: 2%;"><button type="submit">Добавить</button></p>
         </form>
     </div>
+    <div style="height: 30px;"></div>
 {% endblock %}

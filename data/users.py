@@ -1,4 +1,3 @@
-import datetime
 import sqlalchemy
 from .db_session import SqlAlchemyBase
 from sqlalchemy import orm
@@ -24,3 +23,6 @@ class Users(SqlAlchemyBase, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.hashed_password, password)
+
+    def __str__(self):
+        return self.id

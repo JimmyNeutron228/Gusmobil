@@ -1,3 +1,4 @@
+import os
 from data import db_session
 from data.users import Users
 from data.ads import Ads
@@ -37,15 +38,19 @@ def load_user(user_id):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    db_sess = db_session.create_session()
+    ads = db_sess.query(Ads).all()
+    return render_template('index.html', ads=ads)
+
 
 
 @app.route('/add_ad', methods=['GET', 'POST'])
+@login_required
 def add_ads():
     form = Adds()
     if form.validate_on_submit():
         session = db_session.create_session()
-        add = Adds(
+        add = Ads(
             brand=form.brand.data,
             model=form.model.data,
             price=form.price.data,
@@ -57,7 +62,20 @@ def add_ads():
             mileage=form.mileage.data,
             year=form.year.data,
             about=form.about.data
-            )
+        )
+        requested_files = request.files.getlist('file')
+        id = session.query(Users).filter(Users.name == current_user.name,
+                                         Users.email == current_user.email,
+                                         Users.surname == current_user.surname).first().id
+        os.chdir(f'users_data/profile_{id}')
+        dir_kol = len(os.listdir())
+        os.mkdir(f'ad_{dir_kol + 1}')
+        os.chdir(f'ad_{dir_kol + 1}')
+        for i in range(len(requested_files)):
+            requested_files[i].save(f'image_{i + 1}.jpg')
+        db_images_list = os.listdir()
+        add.images = ', '.join(db_images_list)
+        add.user_id = id
         session.add(add)
         session.commit()
         return redirect('/')
@@ -93,10 +111,18 @@ def register():
         user = Users(
             surname=form.surname.data,
             name=form.name.data,
-            email=form.email.data)
+            email=form.email.data
+        )
         user.set_password(form.password.data)
         session.add(user)
         session.commit()
+        id = session.query(Users).filter(Users.name == user.name,
+                                         Users.email == user.email,
+                                         Users.surname == user.surname).first().id
+        os.chdir('users_data')
+        new_dir_name = 'profile_' + str(id)
+        if not os.path.isdir(new_dir_name):
+            os.mkdir(new_dir_name)
         return redirect('/')
     return render_template('register.html', title='Регистрация', form=form)
 
