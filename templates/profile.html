@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="card mt-4">
+        <h1 style="text-align: center;">{{title}}</h1>
+        <h2 style="padding: 7px; margin: 20px;">Логин: {{current_user.email}}</h2>
+        <h2 style="padding: 7px; margin: 20px;">Имя: {{current_user.name}}</h2>
+        <h2 style="padding: 7px; margin: 20px;">Фамилия: {{current_user.surname}}</h2>
+        <div align="center" style="margin-bottom: 2%">
+            <a href="/logout"><button>Выйти</button></a>
+            <a href="/edit_profile"><button>Редактировать</button></a>
+        </div>
+    </div>
+{% endblock %}
