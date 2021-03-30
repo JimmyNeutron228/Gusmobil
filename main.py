@@ -6,6 +6,7 @@ from data.favorites import Favorites
 from forms.login import LoginForm
 from forms.ads import Adds
 from forms.register import RegisterForm
+from forms.edit_profile import EditProfileForm
 from flask import Flask, request, abort
 from flask import render_template, redirect
 from flask_login import LoginManager, login_user
@@ -128,6 +129,42 @@ def register():
         os.chdir('..')
         return redirect('/')
     return render_template('register.html', title='Регистрация', form=form)
+
+
+@app.route('/profile')
+def profile():
+    db_sess = db_session.create_session()
+    user = db_sess.query(Users).filter(Users.email == current_user.email).first()
+    return render_template('profile.html', title='Личный кабинет')
+
+
+@app.route('/edit_profile', methods=['GET', 'POST'])
+@login_required
+def edit_profile():
+    form = EditProfileForm()
+    if request.method == "GET":
+        db_sess = db_session.create_session()
+        user = db_sess.query(Users).filter(Users.email == current_user.email).first()
+        if user:
+            form.name.data = user.name
+            form.surname.data = user.surname
+            form.email.data = user.email
+        else:
+            abort(404)
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        user = db_sess.query(Users).filter(Users.email == current_user.email).first()
+        if user and user.check_password(form.password.data):
+            user.name = form.name.data
+            user.surname = form.surname.data
+            user.email = form.email.data
+            db_sess.merge(user)
+            db_sess.commit()
+            return redirect('/profile')
+        return render_template("edit_profile.html", title="Редактирование профиля", form=form,
+                               message="Неверный пароль")
+    return render_template('edit_profile.html', form=form, title='Редактирование профиля')
+
 
 
 if __name__ == '__main__':
