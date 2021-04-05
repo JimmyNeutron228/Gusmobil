@@ -1,13 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="row">
-    {% for elem in ads %}
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card">
-
-            </div>
-        </div>
-    {% endfor %}
-</div>
+{% for elem in ads %}
+    <div class="card">
+        <img class="index_image" src="/static/{{elem.images}}/image_1.jpg">
+        <div class="main_inf"><a href="#"><h3>{{ elem.brand + ' ' + elem.model }}</h3></a></div>
+        <div class="price">{{ elem.price }} &#x20bd;</div>
+    </div>
+{% endfor %}
 {% endblock %}

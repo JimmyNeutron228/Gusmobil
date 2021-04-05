@@ -68,8 +68,8 @@ def add_ads():
         id = session.query(Users).filter(Users.name == current_user.name,
                                          Users.email == current_user.email,
                                          Users.surname == current_user.surname).first().id
-        os.chdir(f'users_data/profile_{id}')
-        dir_kol = len(os.listdir())
+        os.chdir(f'static/users_data/profile_{id}')
+        dir_kol = len(os.listdir()  )
         os.mkdir(f'ad_{dir_kol + 1}')
         os.chdir(f'ad_{dir_kol + 1}')
         for i in range(len(requested_files)):
@@ -80,7 +80,7 @@ def add_ads():
         add.user_id = id
         session.add(add)
         session.commit()
-        os.chdir('../../..')
+        os.chdir('../../../..')
         return redirect('/')
     return render_template('add_ad.html', form=form)
 
@@ -122,11 +122,11 @@ def register():
         id = session.query(Users).filter(Users.name == user.name,
                                          Users.email == user.email,
                                          Users.surname == user.surname).first().id
-        os.chdir('users_data')
+        os.chdir('static/users_data')
         new_dir_name = 'profile_' + str(id)
         if not os.path.isdir(new_dir_name):
             os.mkdir(new_dir_name)
-        os.chdir('..')
+        os.chdir('../..')
         return redirect('/')
     return render_template('register.html', title='Регистрация', form=form)
 
