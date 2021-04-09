@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% for elem in ads %}
-    <div class="card">
-        <img class="index_image" src="/static/{{elem.images}}/image_1.jpg">
-        <div class="main_inf"><a href="#"><h3>{{ elem.brand + ' ' + elem.model }}</h3></a></div>
-        <div class="price">{{ elem.price }} &#x20bd;</div>
+<div>
+    {% for elem in ads %}
+    <div class="card mb-3">
+        <div>
+            <img class="card-img-left" src="/static/{{elem.images}}/image_1.jpg">
+            <div>
+                <span style="float: left"><a href="#">{{ elem.brand + ' ' + elem.model }}</a></span>
+                <span style="float: right; margin-top: 2px;margin-right: 5px; text-align:right">{{ elem.price }} &#x20bd;</span>
+            </div>
+        </div>
     </div>
-{% endfor %}
+    {% endfor %}
+</div>
 {% endblock %}

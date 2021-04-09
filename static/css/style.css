@@ -1,0 +1,31 @@
+.card-img-left {
+    width: 25%;
+    margin-right: 10px;
+    border-radius: 1px;
+    float: left;
+}
+
+nav::after {
+    border-bottom: 1px solid blue;
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    bottom: 0;
+    margin: 0 auto;
+}
+
+body {
+    background-color: #4d648d;
+}
+
+span {
+    font-size: 24px;
+}
+
+@media (orientation: portrait) {
+    span {
+        font-size: 12px;
+    }
+}
