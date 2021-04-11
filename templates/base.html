@@ -13,46 +13,113 @@
     {% endblock %}
 </head>
 <body style="background-color: #10141D;">
-<div>
-    <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
-        <a class="navbar-brand" href="/">ГусьМобиль.РФ</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse mr-auto" id="navbarSupportedContent">
-            <a class="mr-auto"></a>
-            <p class="mt-1 mb-1">
-                <a class="btn btn-light mr-2 mt-1 mb-1" href="#">Контакты</a>
-            </p>
-            <p class="mt-1 mb-1">
-                <a class="btn btn-light mr-2 mt-1 mb-1" href="#">Избранные</a>
-            </p>
-            {% if not current_user.is_authenticated %}
+<div class="wrapper">
+    <div class="content">
+        <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
+            <a class="navbar-brand" href="/">ГусьМобиль.РФ</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse mr-auto" id="navbarSupportedContent">
+                <a class="mr-auto"></a>
+                <p class="mt-1 mb-1">
+                    <a class="btn btn-light mr-2 mt-1 mb-1" href="#">Контакты</a>
+                </p>
+                <p class="mt-1 mb-1">
+                    <a class="btn btn-light mr-2 mt-1 mb-1" href="#">Избранные</a>
+                </p>
+                {% if not current_user.is_authenticated %}
                 <p class="mt-1 mb-1">
                     <a class="btn btn-primary mr-2" href="/login"> Войти </a>
                 </p>
                 <p class="mt-1 mb-1">
                     <a class="btn btn-primary" href="/register"> Зарегистрироваться </a>
                 </p>
-            {% else %}
+                {% else %}
                 <p class="mt-1 mb-1">
                     <a class="btn btn-danger" href="/profile"> Личный кабинет </a>
                 </p>
-            {% endif %}
+                {% endif %}
+            </div>
+        </nav>
+        <div class="container mt-4">
+            {% block content %}
+            {% endblock %}
         </div>
-    </nav>
-    <div class="container mt-4">
-        {% block content %}
-        {% endblock %}
     </div>
 </div>
+<script type="text/javascript" src="../static/js/script1.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" crossorigin="anonymous"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        crossorigin="anonymous"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        crossorigin="anonymous"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"></script>
+<div class="footer" style="background-color: #f1f1f1;">
+    <!-- Grid container -->
+    <div class="container pt-4">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+            <!-- Facebook -->
+
+
+            <!-- Twitter -->
+            <a
+                    class="btn btn-link btn-floating btn-lg text-dark m-1"
+                    href="#!"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+            ><i class="fab fa-twitter"></i
+            ></a>
+
+            <!-- Google -->
+            <a
+                    class="btn btn-link btn-floating btn-lg text-dark m-1"
+                    href="#!"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+            ><i class="fab fa-google"></i
+            ></a>
+
+            <!-- Instagram -->
+            <a
+                    class="btn btn-link btn-floating btn-lg text-dark m-1"
+                    href="#!"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+            ><i class="fab fa-instagram"></i
+            ></a>
+
+            <!-- Linkedin -->
+            <a
+                    class="btn btn-link btn-floating btn-lg text-dark m-1"
+                    href="#!"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+            ><i class="fab fa-linkedin"></i
+            ></a>
+            <!-- Github -->
+            <a
+                    class="btn btn-link btn-floating btn-lg text-dark m-1"
+                    href="#!"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+            ><i class="fab fa-github"></i
+            ></a>
+        </section>
+        <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2021 Copyright:
+        <a class="text-dark" href="/">ГусьМобиль.РФ</a>
+    </div>
+</div>
 </body>
 </html>

@@ -24,6 +24,14 @@ def main():
     app.run()
 
 
+@app.route('/add/<int:id>')
+def add(id):
+    session = db_session.create_session()
+    add = session.query(Ads).filter(Ads.id == id).first()
+    count = len(os.listdir(add.images))
+    return render_template('add.html', count=count, add=add)
+
+
 @app.route('/logout')
 @login_required
 def logout():
@@ -74,7 +82,7 @@ def add_ads():
         os.chdir(f'ad_{dir_kol + 1}')
         for i in range(len(requested_files)):
             requested_files[i].save(f'image_{i + 1}.jpg')
-        db_images_dir = os.getcwd()
+        db_images_dir = os.getcwd().replace('\\', '/')
         db_images_dir = db_images_dir[db_images_dir.index('users_data'):]
         add.images = db_images_dir
         add.user_id = id

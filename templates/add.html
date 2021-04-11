@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="card mb-3">
+        {% for i in range(count) %}
+            <img style="width: 25%;" align="center" src="../{{add.images}}/image_{{ i + 1 }}.jpg">
+            <span>{{ add.about }}</span>
+        {% endfor %}
+    </div>
+{% endblock %}
