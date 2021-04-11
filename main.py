@@ -12,7 +12,6 @@ from flask import render_template, redirect
 from flask_login import LoginManager, login_user
 from flask_login import login_required, logout_user, current_user
 
-
 app = Flask(__name__)
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -22,6 +21,41 @@ app.config['SECRET_KEY'] = 'ISBN5-89392-055-4'
 def main():
     db_session.global_init('db/gus_auto.db')
     app.run()
+
+
+@app.route('/favorite')
+@login_required
+def favorite():
+    session = db_session.create_session()
+    favorite = session.query(Favorites).filter(Favorites.user_id == current_user.id).all()
+    adds = []
+    for elem in favorite:
+        adds.append(session.query(Ads).filter(Ads.id == elem.ad_id).first())
+    return render_template('favorite.html', favorites=adds)
+
+
+@app.route('/add_to_favorite/<int:id>')
+@login_required
+def add_to_favorites(id):
+    db_sess = db_session.create_session()
+    add = db_sess.query(Ads).filter(Ads.id == id).first()
+    favorite_add = Favorites(
+        ad_id=id,
+        user_id=current_user.id
+    )
+    db_sess.add(favorite_add)
+    db_sess.commit()
+    return redirect('/')
+
+
+@app.route('/del_to_favorite/<int:id>')
+@login_required
+def del_to_favorites(id):
+    db_sess = db_session.create_session()
+    add = db_sess.query(Favorites).filter(Favorites.ad_id == id).first()
+    db_sess.delete(add)
+    db_sess.commit()
+    return redirect('/')
 
 
 @app.route('/add/<int:id>')
@@ -49,8 +83,8 @@ def load_user(user_id):
 def index():
     db_sess = db_session.create_session()
     ads = db_sess.query(Ads).all()
-    return render_template('index.html', ads=ads)
-
+    favorite = db_sess.query(Favorites).filter(Favorites.user_id == current_user.id).all()
+    return render_template('index.html', ads=ads, favorite=favorite)
 
 
 @app.route('/add_ad', methods=['GET', 'POST'])
@@ -77,14 +111,14 @@ def add_ads():
                                          Users.email == current_user.email,
                                          Users.surname == current_user.surname).first().id
         os.chdir(f'static/users_data/profile_{id}')
-        dir_kol = len(os.listdir()  )
+        dir_kol = len(os.listdir())
         os.mkdir(f'ad_{dir_kol + 1}')
         os.chdir(f'ad_{dir_kol + 1}')
         for i in range(len(requested_files)):
             requested_files[i].save(f'image_{i + 1}.jpg')
         db_images_dir = os.getcwd().replace('\\', '/')
         db_images_dir = db_images_dir[db_images_dir.index('users_data'):]
-        add.images = db_images_dir
+        add.images = 'static/' + db_images_dir
         add.user_id = id
         session.add(add)
         session.commit()

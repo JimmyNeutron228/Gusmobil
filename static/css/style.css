@@ -34,6 +34,12 @@ span {
  height: 131px;
 }
 
+.btn-favorite {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+}
+
 @media (orientation: portrait) {
     span {
         font-size: 12px;
