@@ -10,6 +10,7 @@
             <span style="float: left"><a href="/add/{{ elem.id }}">{{ elem.brand + ' ' + elem.model }}</a></span>
             <span style="float: right; margin-top: 2px;margin-right: 5px; text-align:right">{{ elem.price }} &#x20bd;</span>
         </div>
+        <a class="btn-favorite" href="/del_to_favorite/{{ elem.id }}/0">&#10084;</a>
     </div>
 </div>
 {% endfor %}

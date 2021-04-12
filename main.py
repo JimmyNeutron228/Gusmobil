@@ -25,9 +25,7 @@ def main():
 
 @app.route('/favorite')
 def favorite():
-    print(2)
     if current_user.is_authenticated:
-        print(1)
         session = db_session.create_session()
         fav = session.query(Favorites).filter(Favorites.user_id == current_user.id).all()
         adds = []
@@ -51,14 +49,17 @@ def add_to_favorites(id):
     return redirect('/')
 
 
-@app.route('/del_to_favorite/<int:id>')
+@app.route('/del_to_favorite/<int:id>/<int:bool>')
 @login_required
-def del_to_favorites(id):
+def del_to_favorites(id, bool):
     db_sess = db_session.create_session()
     add = db_sess.query(Favorites).filter(Favorites.ad_id == id).first()
     db_sess.delete(add)
     db_sess.commit()
-    return redirect('/')
+    if bool:
+        return redirect('/')
+    else:
+        return redirect('/favorite')
 
 
 @app.route('/add/<int:id>')
@@ -88,8 +89,9 @@ def index():
     ads = db_sess.query(Ads).all()
     if current_user.is_authenticated:
         favorite = db_sess.query(Favorites).filter(Favorites.user_id == current_user.id).all()
+        favorite = list(map(lambda el: el.ad_id, favorite))
         return render_template('index.html', ads=ads, favorite=favorite)
-    return render_template('index.html', ads=ads)
+    return render_template('index.html', ads=ads, favorite=[])
 
 
 @app.route('/add_ad', methods=['GET', 'POST'])

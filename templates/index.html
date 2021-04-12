@@ -10,18 +10,11 @@
                 <span style="float: left"><a href="/add/{{ elem.id }}">{{ elem.brand + ' ' + elem.model }}</a></span>
                 <span style="float: right; margin-top: 2px;margin-right: 5px; text-align:right">{{ elem.price }} &#x20bd;</span>
             </div>
-            {% if favorite %}
-            {% for el in favorite %}
-            {% if elem.id == el.ad_id %}
-            <a class="btn btn-favorite" style="width: 35px; height: 35px;"
-               href="/del_to_favorite/{{ elem.id }}">&#10084;</a>
+            {% if elem.id in favorite %}
+            <a class="btn-favorite"
+               href="/del_to_favorite/{{ elem.id }}/1">&#10084;</a>
             {% else %}
-            <a class="btn btn-favorite" style="width: 25px; height: 25px;"
-               href="/add_to_favorite/{{ elem.id }}">&#129293;</a>
-            {% endif %}
-            {% endfor %}
-            {% else %}
-            <a class="btn btn-favorite" style="width: 25px; height: 25px;"
+            <a class="btn-favorite"
                href="/add_to_favorite/{{ elem.id }}">&#129293;</a>
             {% endif %}
         </div>
