@@ -176,7 +176,7 @@ def register():
         if not os.path.isdir(new_dir_name):
             os.mkdir(new_dir_name)
         os.chdir('../..')
-        return redirect('/')
+        return redirect('/login')
     return render_template('register.html', title='Регистрация', form=form)
 
 
@@ -215,5 +215,19 @@ def edit_profile():
     return render_template('edit_profile.html', form=form, title='Редактирование профиля')
 
 
-if __name__ == '__main__':
+@app.route('/delete_ad/<int:ad_id>')
+@login_required
+def delete_ad(ad_id):
+    db_sess = db_session.create_session()
+    ad = db_sess.query(Ads).filter(Ads.id == ad_id,
+                                      Ads.user_id == current_user.id).first()
+    if ad:
+        db_sess.delete(ad)
+        db_sess.commit()
+    else:
+        abort(404)
+    return redirect('/')
+
+
+if __name__ == 'main':
     main()

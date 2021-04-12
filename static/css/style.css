@@ -46,6 +46,12 @@ span {
     text-decoration: none;
 }
 
+.delete-ad {
+    position: absolute;
+    right: 50px;
+    bottom: 5px;
+}
+
 @media (orientation: portrait) {
     span {
         font-size: 12px;
