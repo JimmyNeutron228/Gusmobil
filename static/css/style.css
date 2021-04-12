@@ -57,3 +57,12 @@ span {
         font-size: 12px;
     }
 }
+.profile-data {
+    margin-bottom: 15px;
+}
+
+.delete-ad-profile {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}

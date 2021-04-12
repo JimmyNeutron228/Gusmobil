@@ -183,8 +183,8 @@ def register():
 @app.route('/profile')
 def profile():
     db_sess = db_session.create_session()
-    user = db_sess.query(Users).filter(Users.email == current_user.email).first()
-    return render_template('profile.html', title='Личный кабинет')
+    ads = db_sess.query(Ads).filter(Ads.user_id == current_user.id).all()
+    return render_template('profile.html', title='Личный кабинет', self_ads=ads)
 
 
 @app.route('/edit_profile', methods=['GET', 'POST'])

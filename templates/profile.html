@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="card mt-4">
+    <div class="card mt-4 profile-data">
         <h1 style="text-align: center;">{{title}}</h1>
         <h2 style="padding: 7px; margin: 20px;">Логин: {{current_user.email}}</h2>
         <h2 style="padding: 7px; margin: 20px;">Имя: {{current_user.name}}</h2>
@@ -11,4 +11,20 @@
             <a href="/edit_profile"><button>Редактировать</button></a>
         </div>
     </div>
+    {% for elem in self_ads %}
+    {% if elem.user_id == current_user.id %}
+    <div class="card mb-3">
+        <div>
+            <img class="card-img-left" src="{{elem.images}}/image_1.jpg">
+            <div>
+                <span style="float: left"><a href="/add/{{ elem.id }}">{{ elem.brand + ' ' + elem.model }}</a></span>
+                <span style="float: right; margin-top: 2px;margin-right: 5px; text-align:right">{{ elem.price }} &#x20bd;</span>
+            </div>
+            {% if current_user.id == 1 or current_user.id == elem.user_id %}
+            <a class="btn btn-danger delete-ad-profile" href="/delete_ad/{{ elem.id }}}"> Удалить </a>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
 {% endblock %}
