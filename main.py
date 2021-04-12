@@ -24,14 +24,17 @@ def main():
 
 
 @app.route('/favorite')
-@login_required
 def favorite():
-    session = db_session.create_session()
-    favorite = session.query(Favorites).filter(Favorites.user_id == current_user.id).all()
-    adds = []
-    for elem in favorite:
-        adds.append(session.query(Ads).filter(Ads.id == elem.ad_id).first())
-    return render_template('favorite.html', favorites=adds)
+    print(2)
+    if current_user.is_authenticated:
+        print(1)
+        session = db_session.create_session()
+        fav = session.query(Favorites).filter(Favorites.user_id == current_user.id).all()
+        adds = []
+        for elem in fav:
+            adds.append(session.query(Ads).filter(Ads.id == elem.ad_id).first())
+        return render_template('favorite.html', favorites=adds)
+    return abort(404)
 
 
 @app.route('/add_to_favorite/<int:id>')
@@ -83,8 +86,10 @@ def load_user(user_id):
 def index():
     db_sess = db_session.create_session()
     ads = db_sess.query(Ads).all()
-    favorite = db_sess.query(Favorites).filter(Favorites.user_id == current_user.id).all()
-    return render_template('index.html', ads=ads, favorite=favorite)
+    if current_user.is_authenticated:
+        favorite = db_sess.query(Favorites).filter(Favorites.user_id == current_user.id).all()
+        return render_template('index.html', ads=ads, favorite=favorite)
+    return render_template('index.html', ads=ads)
 
 
 @app.route('/add_ad', methods=['GET', 'POST'])
