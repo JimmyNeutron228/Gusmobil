@@ -11,6 +11,7 @@
             <a href="/edit_profile"><button>Редактировать</button></a>
         </div>
     </div>
+    <h2 style="text-align: center; color: white;">Ваши объявления</h2>
     {% for elem in self_ads %}
     {% if elem.user_id == current_user.id %}
     <div class="card mb-3">
@@ -21,7 +22,7 @@
                 <span style="float: right; margin-top: 2px;margin-right: 5px; text-align:right">{{ elem.price }} &#x20bd;</span>
             </div>
             {% if current_user.id == 1 or current_user.id == elem.user_id %}
-            <a class="btn btn-danger delete-ad-profile" href="/delete_ad/{{ elem.id }}}"> Удалить </a>
+            <a class="btn btn-danger delete-ad-profile" href="/delete_ad/{{ elem.id }}"> Удалить </a>
             {% endif %}
         </div>
     </div>

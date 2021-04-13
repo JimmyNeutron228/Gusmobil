@@ -25,7 +25,11 @@
             <div class="collapse navbar-collapse mr-auto" id="navbarSupportedContent">
                 <a class="mr-auto"></a>
                 <p class="mt-1 mb-1">
-                    <a class="btn btn-light mr-2 mt-1 mb-1" href="#">Контакты</a>
+                    {% if current_user.is_authenticated %}
+                    <a class="btn btn-light mr-2 mt-1 mb-1" href="/add_ad"> Добавить объявление </a>
+                    {% else %}
+                    <a class="btn btn-light mr-2 mt-1 mb-1" href="/login"> Добавить объявление </a>
+                    {% endif %}
                 </p>
                 <p class="mt-1 mb-1">
                     <a class="btn btn-light mr-2 mt-1 mb-1" href="/favorite">Избранные</a>
@@ -39,7 +43,7 @@
                 </p>
                 {% else %}
                 <p class="mt-1 mb-1">
-                    <a class="btn btn-success" href="/profile"> Личный кабинет </a>
+                    <a class="btn btn-dark" href="/profile"> Личный кабинет </a>
                 </p>
                 {% endif %}
             </div>
