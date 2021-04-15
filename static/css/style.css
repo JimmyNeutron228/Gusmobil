@@ -69,3 +69,9 @@ span {
     right: 5px;
     bottom: 5px;
 }
+
+.col {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+}

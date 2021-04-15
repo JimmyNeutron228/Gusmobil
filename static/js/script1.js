@@ -6,7 +6,8 @@ function showFile(e) {
         fr.onload = (function (theFile) {
             return function (e) {
                 var div = document.createElement("div");
-                div.innerHTML = "<img src='" + e.target.result + "' />";
+                div.innerHTML = "<img style='max-width: 100%; border-radius: 5px;' src='" + e.target.result + "' />";
+                div.classList.add('col')
                 document.getElementById("list").insertBefore(div, null);
             };
         })(f);
