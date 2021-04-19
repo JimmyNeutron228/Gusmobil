@@ -62,10 +62,10 @@ def del_to_favorites(id, bool):
         return redirect('/favorite')
 
 
-@app.route('/add/<int:id>')
-def add(id):
+@app.route('/add/<int:ad_id>')
+def add(ad_id):
     session = db_session.create_session()
-    add = session.query(Ads).filter(Ads.id == id).first()
+    add = session.query(Ads).filter(Ads.id == ad_id).first()
     count = len(os.listdir(add.images))
     return render_template('add.html', count=count, add=add)
 
@@ -163,7 +163,8 @@ def register():
         user = Users(
             surname=form.surname.data,
             name=form.name.data,
-            email=form.email.data
+            email=form.email.data,
+            phone=form.phone.data
         )
         user.set_password(form.password.data)
         session.add(user)
@@ -198,6 +199,7 @@ def edit_profile():
             form.name.data = user.name
             form.surname.data = user.surname
             form.email.data = user.email
+            form.phone.data = user.phone
         else:
             abort(404)
     if form.validate_on_submit():
@@ -207,6 +209,7 @@ def edit_profile():
             user.name = form.name.data
             user.surname = form.surname.data
             user.email = form.email.data
+            user.phone = form.phone.data
             db_sess.merge(user)
             db_sess.commit()
             return redirect('/profile')

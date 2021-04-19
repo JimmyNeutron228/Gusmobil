@@ -8,5 +8,6 @@ class EditProfileForm(FlaskForm):
     name = StringField('Имя', validators=[DataRequired()])
     surname = StringField('Фамилия', validators=[DataRequired()])
     email = EmailField("Электронная почта", validators=[DataRequired()])
+    phone = StringField('Телефон', validators=[DataRequired()])
     password = PasswordField('Текущий пароль', validators=[DataRequired()])
     submit = SubmitField('Изменить')

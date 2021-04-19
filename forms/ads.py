@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired
 class Adds(FlaskForm):
     brand = StringField('Марка', validators=[DataRequired()])
     model = StringField('Модель', validators=[DataRequired()])
-    price = IntegerField('Цена', validators=[DataRequired()])
+    price = IntegerField('Цена, ₽', validators=[DataRequired()])
     transmission = SelectField('КПП', choices=[('Механическая', 'Механическая'),
                                                 ('Автоматическая', "Автоматическая"),
                                                 ('Роботизированная', "Роботизированная"),
