@@ -66,8 +66,9 @@ def del_to_favorites(id, bool):
 def add(ad_id):
     session = db_session.create_session()
     add = session.query(Ads).filter(Ads.id == ad_id).first()
+    user = session.query(Users).filter(Users.id == add.user_id).first()
     count = len(os.listdir(add.images))
-    return render_template('add.html', count=count, add=add)
+    return render_template('add.html', count=count, add=add, user=user)
 
 
 @app.route('/logout')

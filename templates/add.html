@@ -27,6 +27,29 @@
                 <span class="visually-hidden"></span>
             </button>
         </div>
-
+        <br>
+        <div class="card text-white bg-dark mb-3" style="width: 90%; align-self: center;">
+            <div class="card-header">Характеристика</div>
+            <div class="card-body">
+                <p class="card-text">
+                    <div class="card text-white bg-success mb-3" style="float: right; width: 60%;">
+                        <div class="card-header">Комментарий владельца</div>
+                        <div class="card-body">
+                            <p class="card-text">{{ add.about }}</p>
+                        </div>
+                    </div>
+                    <div>Год: {{ add.year }}</div>
+                    <div>Пробег (км): {{ add.mileage }}</div>
+                    <div>Двигатель: {{ add.engine }}</div>
+                    <div>Мощность (л.с.): {{ add.power }}</div>
+                    <div>Коробка: {{ add.transmission }}</div>
+                    <div>Привод: {{ add.drive_unit }}</div>
+                    <div>Руль: {{ add.steering_wheel }}</div>
+                    <div>Цена: {{ add.price }}</div>
+                    <div>Телефон владельца: {{ user.phone }}</div>
+                    <div>Электронная почта владельца: {{ user.email }}</div>
+                </p>
+            </div>
+        </div>
     </div>
 {% endblock %}
