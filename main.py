@@ -2,6 +2,7 @@ import os
 from data import db_session
 from data.users import Users
 from data.ads import Ads
+from forms.edit_ad import EditForm
 from data.favorites import Favorites
 from forms.login import LoginForm
 from forms.ads import Adds
@@ -233,5 +234,51 @@ def delete_ad(ad_id):
     return redirect('/')
 
 
-if __name__ == 'main':
+@app.route('/edit_ad/<int:ad_id>', methods=['GET', 'POST'])
+@login_required
+def edit_ad(ad_id):
+    form = EditForm()
+    if request.method == "GET":
+        db_sess = db_session.create_session()
+        ad = db_sess.query(Ads).filter(Ads.id == ad_id,
+                                        Ads.user_id == current_user.id).first()
+        if ad:
+            form.brand.data = ad.brand
+            form.model.data = ad.model
+            form.price.data = ad.price
+            form.transmission.data = ad.transmission
+            form.engine.data = ad.engine
+            form.steering_wheel.data = ad.steering_wheel
+            form.power.data = ad.power
+            form.drive_unit.data = ad.drive_unit
+            form.mileage.data = ad.mileage
+            form.year.data = ad.year
+            form.about.data = ad.about
+        else:
+            abort(404)
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        ad = db_sess.query(Ads).filter(Ads.id == ad_id,
+                                       Ads.user_id == current_user.id).first()
+        if ad:
+            ad.brand = form.brand.data
+            ad.model = form.model.data
+            ad.price = form.price.data
+            ad.transmission = form.transmission.data
+            ad.engine = form.engine.data
+            ad.steering_wheel = form.steering_wheel.data
+            ad.power = form.power.data
+            ad.drive_unit = form.drive_unit.data
+            ad.mileage = form.mileage.data
+            ad.year = form.year.data
+            ad.about = form.about.data
+            db_sess.merge(ad)
+            db_sess.commit()
+            return redirect('/')
+        else:
+            abort(404)
+    return render_template('edit_ad.html', form=form)
+
+
+if __name__ == '__main__':
     main()

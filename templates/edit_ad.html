@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="card mt-4">
+        <h1 style="text-align: center;">Изменение объявлений</h1>
+        <form method="post" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <p>
+                <h2 style="padding: 7px; margin: 20px;">{{ form.brand.label }}</h2>
+                {{ form.brand(class="form-control", style="width: 96%; margin-left: 2%; margin-right: 2%; padding: 10px;") }}<br>
+                {% for error in form.brand.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>
+                <h2 style="padding: 7px; margin: 20px;">{{ form.model.label }}</h2>
+                {{ form.model(class="form-control", style="width: 96%; margin-left: 2%; margin-right: 2%; padding: 10px;") }}<br>
+                {% for error in form.model.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>
+                <h2 style="padding: 7px; margin: 20px;">{{ form.price.label }}</h2>
+                {{ form.price(class="form-control", style="width: 96%; margin-left: 2%; margin-right: 2%; padding: 10px;") }}<br>
+                {% for error in form.price.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>
+                <h2 style="padding: 7px; margin: 20px;">{{ form.transmission.label }}</h2>
+                {{ form.transmission(class="form-control", style="width: 96%; margin-left: 2%; margin-right: 2%; padding: 10px;") }}<br>
+                {% for error in form.transmission.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>
+                <h2 style="padding: 7px; margin: 20px;">{{ form.engine.label }}</h2>
+                {{ form.engine(class="form-control", style="width: 96%; margin-left: 2%; margin-right: 2%; padding: 10px;") }}<br>
+                {% for error in form.engine.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>
+                <h2 style="padding: 7px; margin: 20px;">{{ form.steering_wheel.label }}</h2>
+                {{ form.steering_wheel(class="form-control", style="width: 96%; margin-left: 2%; margin-right: 2%; padding: 10px;") }}<br>
+                {% for error in form.steering_wheel.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>
+                <h2 style="padding: 7px; margin: 20px;">{{ form.power.label }}</h2>
+                {{ form.power(class="form-control", style="width: 96%; margin-left: 2%; margin-right: 2%; padding: 10px;") }}<br>
+                {% for error in form.power.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>
+                <h2 style="padding: 7px; margin: 20px;">{{ form.drive_unit.label }}</h2>
+                {{ form.drive_unit(class="form-control", style="width: 96%; margin-left: 2%; margin-right: 2%; padding: 10px;") }}<br>
+                {% for error in form.drive_unit.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>
+                <h2 style="padding: 7px; margin: 20px;">{{ form.mileage.label }}</h2>
+                {{ form.mileage(class="form-control", style="width: 96%; margin-left: 2%; margin-right: 2%; padding: 10px;") }}<br>
+                {% for error in form.mileage.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>
+                <h2 style="padding: 7px; margin: 20px;">{{ form.year.label }}</h2>
+                {{ form.year(class="form-control", style="width: 96%; margin-left: 2%; margin-right: 2%; padding: 10px;") }}<br>
+                {% for error in form.year.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>
+                <h2 style="padding: 7px; margin: 20px;">{{ form.about.label }}</h2>
+                {{ form.about(class="form-control", style="width: 96%; margin-left: 2%; margin-right: 2%; padding: 10px; max-width: 96%; min-width: 96%") }}<br>
+                {% for error in form.about.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p style="margin-left: 2%;"><button type="submit">Изменить</button></p>
+        </form>
+    </div>
+    <div style="height: 30px;"></div>
+{% endblock %}
