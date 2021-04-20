@@ -1,4 +1,5 @@
 import os
+import shutil
 from data import db_session
 from data.users import Users
 from data.ads import Ads
@@ -116,9 +117,7 @@ def add_ads():
             about=form.about.data
         )
         requested_files = request.files.getlist('file')
-        id = session.query(Users).filter(Users.name == current_user.name,
-                                         Users.email == current_user.email,
-                                         Users.surname == current_user.surname).first().id
+        id = current_user.id
         os.chdir(f'static/users_data/profile_{id}')
         dir_kol = len(os.listdir())
         os.mkdir(f'ad_{dir_kol + 1}')
@@ -272,6 +271,21 @@ def edit_ad(ad_id):
             ad.mileage = form.mileage.data
             ad.year = form.year.data
             ad.about = form.about.data
+            requested_files = request.files.getlist('file')
+            id = current_user.id
+            path = ad.images
+            shutil.rmtree(path)
+            os.chdir(f'static/users_data/profile_{id}')
+            dir_kol = len(os.listdir())
+            os.mkdir(f'ad_{dir_kol + 1}')
+            os.chdir(f'ad_{dir_kol + 1}')
+            for i in range(len(requested_files)):
+                requested_files[i].save(f'image_{i + 1}.jpg')
+            db_images_dir = os.getcwd().replace('\\', '/')
+            db_images_dir = db_images_dir[db_images_dir.index('users_data'):]
+            add.images = 'static/' + db_images_dir
+            add.user_id = id
+            os.chdir('../../../..')
             db_sess.merge(ad)
             db_sess.commit()
             return redirect('/')
