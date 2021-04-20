@@ -26,31 +26,31 @@
                 <a class="mr-auto"></a>
                 <p class="mt-1 mb-1">
                     {% if current_user.is_authenticated %}
-                        <a class="btn btn-light mr-2 mt-1 mb-1" href="/add_ad"> Добавить
-                            объявление </a>
+                    <a class="btn btn-light mr-2 mt-1 mb-1" href="/add_ad"> Добавить
+                        объявление </a>
                     {% else %}
-                        <a class="btn btn-light mr-2 mt-1 mb-1" href="/login"> Добавить
-                            объявление </a>
+                    <a class="btn btn-light mr-2 mt-1 mb-1" href="/login"> Добавить
+                        объявление </a>
                     {% endif %}
                 </p>
                 <p class="mt-1 mb-1">
                     {% if current_user.is_authenticated %}
-                        <a class="btn btn-light mr-2 mt-1 mb-1" href="/favorite">Избранные</a>
+                    <a class="btn btn-light mr-2 mt-1 mb-1" href="/favorite">Избранные</a>
                     {% else %}
-                        <a class="btn btn-light mr-2 mt-1 mb-1" href="/login">Избранные</a>
+                    <a class="btn btn-light mr-2 mt-1 mb-1" href="/login">Избранные</a>
                     {% endif %}
                 </p>
                 {% if not current_user.is_authenticated %}
-                    <p class="mt-1 mb-1">
-                        <a class="btn btn-primary mr-2" href="/login"> Войти </a>
-                    </p>
-                    <p class="mt-1 mb-1">
-                        <a class="btn btn-primary" href="/register"> Зарегистрироваться </a>
-                    </p>
+                <p class="mt-1 mb-1">
+                    <a class="btn btn-primary mr-2" href="/login"> Войти </a>
+                </p>
+                <p class="mt-1 mb-1">
+                    <a class="btn btn-primary" href="/register"> Зарегистрироваться </a>
+                </p>
                 {% else %}
-                    <p class="mt-1 mb-1">
-                        <a class="btn btn-dark" href="/profile"> Личный кабинет </a>
-                    </p>
+                <p class="mt-1 mb-1">
+                    <a class="btn btn-dark" href="/profile"> Личный кабинет </a>
+                </p>
                 {% endif %}
             </div>
         </nav>
@@ -65,16 +65,50 @@
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
 <div class="footer" style="background-color: #f1f1f1;">
-    <div class="container pt-4">
-        <section class="mb-4">
-            <a href="https://github.com/JimmyNeutron228/Gusmobil">GitHub.com</a>
-            <a href="mailto:danil.kovaleow@yandex.ru">danil.kovaleow@yandex.ru</a>
-            <span style="font-size: 20px">Всем привет)</span>
-        </section>
+    <div class="container p-1">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase">О нас</h5>
+                <p>
+                    Пельмени
+                </p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <div style="content-align: center;">
+                    <h5 class="text-uppercase">Данил Ковалёв</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <a href="https://vk.com/dk_homie" class="text-dark">Vk</a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/eto_zhe_danil/" class="text-dark">Instagram</a>
+                        </li>
+                        <li>
+                            <a href="mailto:danil.kovaleow@yandex.ru" class="text-dark">Mail</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Томас Люгге</h5>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="https://vk.com/senseei" class="text-dark">Vk</a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/mugivara._/"
+                           class="text-dark">Instagram</a>
+                    </li>
+                    <li>
+                        <a href="mailto:tomkamkad@gmail.com" class="text-dark">Mail</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    <div class="text-center text-white p-3" style="background-color: rgba(130, 130, 130);">
         © 2021 Copyright:
-        <a class="text-dark" href="/">ГусьМобиль.РФ</a>
+        <a class="text-white" href="/">ГусьМобиль.РФ</a>
     </div>
 </div>
 </body>
