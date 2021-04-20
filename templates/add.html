@@ -36,25 +36,25 @@
                         <div class="row">
                             <div class="col"><div class="card text-white bg-secondary mb-3">
                                 <div class="card-header">Год</div>
-                                <div class="card-body">
+                                <div class="card-body text-dark" style="background:#c0c0c0">
                                     <p class="card-text">{{ add.year }}</p>
                                 </div>
                             </div></div>
                             <div class="col"><div class="card text-white bg-secondary mb-3">
                                 <div class="card-header">Пробег</div>
-                                <div class="card-body">
+                                <div class="card-body text-dark" style="background:#c0c0c0">
                                     <p class="card-text">{{ add.mileage }} км</p>
                                 </div>
                             </div></div>
                             <div class="col"><div class="card text-white bg-secondary mb-3">
                                 <div class="card-header">Двигатель</div>
-                                <div class="card-body">
+                                <div class="card-body text-dark" style="background:#c0c0c0">
                                     <p class="card-text">{{ add.engine }}</p>
                                 </div>
                             </div></div>
                             <div class="col"><div class="card text-white bg-secondary mb-3">
                                 <div class="card-header">Мощность</div>
-                                <div class="card-body">
+                                <div class="card-body text-dark" style="background:#c0c0c0">
                                     <p class="card-text">{{ add.power }} л.с.</p>
                                 </div>
                             </div></div>
@@ -63,7 +63,7 @@
                             <div class="col">
                                 <div class="card text-white bg-secondary mb-3">
                                     <div class="card-header">Коробка</div>
-                                    <div class="card-body">
+                                    <div class="card-body text-dark" style="background:#c0c0c0">
                                         <p class="card-text">{{ add.transmission }}</p>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
                             <div class="col">
                                 <div class="card text-white bg-secondary mb-3">
                                     <div class="card-header">Привод</div>
-                                    <div class="card-body">
+                                    <div class="card-body text-dark" style="background:#c0c0c0">
                                         <p class="card-text">{{ add.drive_unit }}</p>
                                     </div>
                                 </div>
@@ -79,7 +79,7 @@
                             <div class="col">
                                 <div class="card text-white bg-secondary mb-3">
                                     <div class="card-header">Руль</div>
-                                    <div class="card-body">
+                                    <div class="card-body text-dark" style="background:#c0c0c0">
                                         <p class="card-text">{{ add.steering_wheel }}</p>
                                     </div>
                                 </div>
@@ -87,16 +87,16 @@
                             <div class="col">
                                 <div class="card text-white bg-danger mb-3">
                                     <div class="card-header">Цена</div>
-                                    <div class="card-body">
+                                    <div class="card-body" style="background:#ff0000">
                                         <p class="card-text">{{ add.price }} &#x20bd;</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card text-white bg-success mb-3">
+                    <div class="card text-white mb-3" style="background:#008000">
                         <div class="card-header">Контакты владельца</div>
-                        <div class="card-body">
+                        <div class="card-body bg-success">
                             <p class="card-text">Телефон: {{ user.phone }}<br>
                                                 Email: {{ user.email }}
                             </p>
@@ -107,7 +107,7 @@
         </div>
         <div class="card text-white bg-primary mb-3" style="width: 90%; align-self: center;">
             <div class="card-header">Комментарий владельца</div>
-            <div class="card-body">
+            <div class="card-body" style="background:#42aaff">
                 <p class="card-text">{{ add.about }}</p>
             </div>
         </div>

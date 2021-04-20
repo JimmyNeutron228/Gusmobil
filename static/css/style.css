@@ -61,6 +61,12 @@ span {
     bottom: 5px;
 }
 
+.edit-ad-profile {
+    position: absolute;
+    right: 100px;
+    bottom: 5px;
+}
+
 @media (orientation: portrait) {
     span {
         font-size: 12px;

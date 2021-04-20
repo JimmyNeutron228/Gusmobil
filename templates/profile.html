@@ -22,6 +22,9 @@
                 <span style="float: left"><a href="/add/{{ elem.id }}">{{ elem.brand + ' ' + elem.model }}</a></span>
                 <span style="float: right; margin-top: 2px;margin-right: 5px; text-align:right">{{ elem.price }} &#x20bd;</span>
             </div>
+            {% if current_user.id == elem.user_id %}
+            <a class="btn btn-warning edit-ad-profile" href="/edit_ad/{{ elem.id }}"> Изменить </a>
+            {% endif %}
             {% if current_user.id == 1 or current_user.id == elem.user_id %}
             <a class="btn btn-danger delete-ad-profile" href="/delete_ad/{{ elem.id }}"> Удалить </a>
             {% endif %}
