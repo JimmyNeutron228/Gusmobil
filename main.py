@@ -116,19 +116,31 @@ def add_ads():
             year=form.year.data,
             about=form.about.data
         )
+        session.add(add)
+        session.commit()
+        ad = session.query(Ads).filter(Ads.brand == add.brand,
+                                       Ads.model == add.model,
+                                       Ads.price == add.price,
+                                       Ads.transmission == add.transmission,
+                                       Ads.engine == add.engine,
+                                       Ads.steering_wheel == add.steering_wheel,
+                                       Ads.power == add.power,
+                                       Ads.drive_unit == add.drive_unit,
+                                       Ads.mileage == add.mileage,
+                                       Ads.year == add.year,
+                                       Ads.about == add.about).first()
         requested_files = request.files.getlist('file')
         id = current_user.id
         os.chdir(f'static/users_data/profile_{id}')
-        dir_kol = len(os.listdir())
-        os.mkdir(f'ad_{dir_kol + 1}')
-        os.chdir(f'ad_{dir_kol + 1}')
+        os.mkdir(f'ad_{ad.id}')
+        os.chdir(f'ad_{ad.id}')
         for i in range(len(requested_files)):
             requested_files[i].save(f'image_{i + 1}.jpg')
         db_images_dir = os.getcwd().replace('\\', '/')
         db_images_dir = db_images_dir[db_images_dir.index('users_data'):]
-        add.images = 'static/' + db_images_dir
-        add.user_id = id
-        session.add(add)
+        ad.images = 'static/' + db_images_dir
+        ad.user_id = id
+        session.merge(ad)
         session.commit()
         os.chdir('../../../..')
         return redirect('/')
@@ -226,6 +238,7 @@ def delete_ad(ad_id):
     ad = db_sess.query(Ads).filter(Ads.id == ad_id,
                                       Ads.user_id == current_user.id).first()
     if ad:
+        shutil.rmtree(ad.images)
         db_sess.delete(ad)
         db_sess.commit()
     else:
@@ -276,15 +289,13 @@ def edit_ad(ad_id):
             path = ad.images
             shutil.rmtree(path)
             os.chdir(f'static/users_data/profile_{id}')
-            dir_kol = len(os.listdir())
-            os.mkdir(f'ad_{dir_kol + 1}')
-            os.chdir(f'ad_{dir_kol + 1}')
+            os.mkdir(f'ad_{ad.id}')
+            os.chdir(f'ad_{ad.id}')
             for i in range(len(requested_files)):
                 requested_files[i].save(f'image_{i + 1}.jpg')
             db_images_dir = os.getcwd().replace('\\', '/')
             db_images_dir = db_images_dir[db_images_dir.index('users_data'):]
             add.images = 'static/' + db_images_dir
-            add.user_id = id
             os.chdir('../../../..')
             db_sess.merge(ad)
             db_sess.commit()
