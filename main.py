@@ -246,6 +246,11 @@ def delete_ad(ad_id):
     return redirect('/')
 
 
+@app.route('/error')
+def error():
+    return render_template('error.html')
+
+
 @app.route('/edit_ad/<int:ad_id>', methods=['GET', 'POST'])
 @login_required
 def edit_ad(ad_id):
@@ -305,5 +310,5 @@ def edit_ad(ad_id):
     return render_template('edit_ad.html', form=form)
 
 
-if __name__ == 'main':
+if __name__ == '__main__':
     main()

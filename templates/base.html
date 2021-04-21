@@ -29,7 +29,7 @@
                         <a class="btn btn-light mr-2 mt-1 mb-1" href="/add_ad"> Добавить
                             объявление </a>
                     {% else %}
-                        <a class="btn btn-light mr-2 mt-1 mb-1" href="/login"> Добавить
+                        <a class="btn btn-light mr-2 mt-1 mb-1" href="/error"> Добавить
                             объявление </a>
                     {% endif %}
                 </p>
@@ -37,7 +37,7 @@
                     {% if current_user.is_authenticated %}
                         <a class="btn btn-light mr-2 mt-1 mb-1" href="/favorite">Избранные</a>
                     {% else %}
-                        <a class="btn btn-light mr-2 mt-1 mb-1" href="/login">Избранные</a>
+                        <a class="btn btn-light mr-2 mt-1 mb-1" href="/error">Избранные</a>
                     {% endif %}
                 </p>
                 {% if not current_user.is_authenticated %}
@@ -73,7 +73,7 @@
             <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
                 <h5 class="text-uppercase">О нас</h5>
                 <p>
-                    Пельмени
+                    Молодая
                 </p>
             </div>
             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
