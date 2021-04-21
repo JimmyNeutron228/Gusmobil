@@ -312,5 +312,5 @@ def edit_ad(ad_id):
     return render_template('edit_ad.html', form=form)
 
 
-if __name__ == 'main':
+if __name__ == '__main__':
     main()
