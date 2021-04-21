@@ -85,16 +85,18 @@ def load_user(user_id):
     db_sess = db_session.create_session()
     return db_sess.query(Users).get(user_id)
 
-
-@app.route('/')
+@app.route('/index', methods=['GET'])
+@app.route('/', methods=['GET'])
 def index():
     db_sess = db_session.create_session()
     ads = db_sess.query(Ads).all()
+    search = request.args.get('s', default="", type=str).lower()
+    print(search)
     if current_user.is_authenticated:
         favorite = db_sess.query(Favorites).filter(Favorites.user_id == current_user.id).all()
         favorite = list(map(lambda el: el.ad_id, favorite))
-        return render_template('index.html', ads=ads, favorite=favorite)
-    return render_template('index.html', ads=ads, favorite=[])
+        return render_template('index.html', ads=ads, favorite=favorite, search=search)
+    return render_template('index.html', ads=ads, favorite=[], search=search)
 
 
 @app.route('/add_ad', methods=['GET', 'POST'])
