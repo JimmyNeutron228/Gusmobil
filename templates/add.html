@@ -3,7 +3,7 @@
 {% block content %}
     <div class="card mb-3">
         <br>
-        <span style="text-align: center;"><a href="/add/{{ add.id }}">{{ add.brand + ' ' + add.model }}</a></span>
+        <span style="text-align: center;">{{ add.brand + ' ' + add.model }}</span>
         <br>
         <div id="carouselExampleIndicators" class="carousel slide mb-2">
             <div class="carousel-inner" style="border-radius: 10px;">
@@ -92,9 +92,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card text-white mb-3" style="background:#008000">
+                    <div class="card text-white mb-3" style="background: #122FAA;">
                         <div class="card-header">Контакты владельца</div>
-                        <div class="card-body bg-success">
+                        <div class="card-body bg-primary">
                             <p class="card-text">Телефон: {{ user.phone }}<br>
                                                 Email: {{ user.email }}
                             </p>
@@ -103,9 +103,9 @@
                 </p>
             </div>
         </div>
-        <div class="card text-white bg-primary mb-3" style="width: 90%; align-self: center;">
+        <div class="card text-white bg-secondary mb-3" style="width: 90%; align-self: center;">
             <div class="card-header">Комментарий владельца</div>
-            <div class="card-body" style="background:#42aaff">
+            <div class="card-body" style="background:#c0c0c0">
                 <p class="card-text">{{ add.about }}</p>
             </div>
         </div>
