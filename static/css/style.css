@@ -87,3 +87,8 @@ span {
     margin-bottom: 5px;
     text-align: center;
 }
+
+.text-left {
+    float: left;
+    margin-left: 20px;
+}
