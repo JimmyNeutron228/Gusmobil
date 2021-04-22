@@ -22,7 +22,8 @@ app.config['SECRET_KEY'] = 'ISBN5-89392-055-4'
 
 def main():
     db_session.global_init('db/gus_auto.db')
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
 
 
 @app.route('/favorite')
